@@ -1,0 +1,6 @@
+**/*.o
+**/*.gc*
+**/libmy.a
+bsq
+idk.c
+**/*.out
