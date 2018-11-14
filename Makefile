@@ -5,7 +5,7 @@
 ## standard makefile
 ##
 
-NAME=calc
+NAME=bsq
 CFLAGS+= -Wall -I./include -L./lib/my -lmy
 SRC=$(wildcard *.c)
 

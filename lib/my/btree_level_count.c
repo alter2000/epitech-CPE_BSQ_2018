@@ -7,14 +7,6 @@
 
 #include "my.h"
 
-static int min(int i, int j)
-{
-    if (i < j)
-        return i;
-    else
-        return j;
-}
-
 size_t btree_level_count(btree_t const *root)
 {
     if (!root)

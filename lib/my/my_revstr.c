@@ -13,6 +13,8 @@ char *my_revstr(char *str)
     int b = my_strlen(str) - 1;
     int c;
 
+    if (!str)
+        return 0;
     while (a < b) {
         c = str[a];
         str[a++] = str[b];

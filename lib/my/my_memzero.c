@@ -7,7 +7,7 @@
 
 #include "my.h"
 
-void *my_memzero(char *s, size_t n)
+void *my_bzero(char *s, size_t n)
 {
     if (!s)
         return 0;

@@ -12,7 +12,7 @@ char *my_strcapitalize(char *str)
     int len = my_strlen(str);
 
     for (int i = 0; i < len; i++) {
-        if (my_isalpha(str[i]) && (my_isspace(str[i - 1]) || i == 0))
+        if (my_isalpha(str[i]) && (i == 0 || my_isspace(str[i - 1])))
             str[i] -= 32;
     }
     return str;

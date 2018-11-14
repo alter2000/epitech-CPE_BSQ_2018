@@ -7,21 +7,28 @@
 
 #include "my.h"
 
-int my_put_nbr(int nb)
+int my_put_nbr_base(int nb, char const *base)
 {
-    if (nb < INT_MIN || nb > INT_MAX) {
-        write(2, "put_nbr: out of bounds", 25);
+    int b = my_strlen(base);
+
+    if (nb < INT_MIN + b + 1 || nb > INT_MAX - b - 1) {
+        write(2, "put_nbr: out of bounds\n", 23);
         return 0;
     }
     if (nb < 0) {
         my_putchar('-');
-        my_put_nbr(-nb);
+        my_put_nbr_base(-nb, base);
     }
-    if (nb > 9) {
-        my_put_nbr(nb / 10);
-        my_put_nbr(nb % 10);
+    if (nb > b - 1) {
+        my_put_nbr_base(nb / b, base);
+        my_put_nbr_base(nb % b, base);
     }
-    if (nb >= 0)
-        my_putchar('0' + nb);
-    return 0;
+    if (nb >= 0 && nb < b)
+        my_putchar(base[nb]);
+    return nb;
+}
+
+int my_put_nbr(int nb)
+{
+    return my_put_nbr_base(nb, "0123456789");
 }
