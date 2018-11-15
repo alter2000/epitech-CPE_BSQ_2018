@@ -27,7 +27,6 @@ long long int my_strtoll(char *, char **, long long int);
 char *my_itoa(int);
 int is_in(char, char *);
 
-int my_isneg(int const);
 void my_swap(int *, int *);
 void my_sort_int_array(int *, int);
 
@@ -67,16 +66,13 @@ int my_isprintable(char);
 
 char **my_str_to_word_array(char const *);
 char *my_strdup(char const *);
-void err(char const *);
-void errb(char const *);
-int abs(int);
-int min(int, int);
-int max(int, int);
 void *my_memset(char *, short, size_t);
 void *my_bzero(char *, size_t);
 
 int my_atoi(char const **);
 long long int my_atoll(char const **);
+char *getl(int, char **, int *);
+char *getd(int, char **, int *, char);
 
 typedef struct btree
 {
@@ -89,5 +85,35 @@ btree_t *btree_create_node(char *);
 void btree_apply_infix(btree_t *, long long int (*)(char *));
 void btree_insert_data(btree_t *, char *, int (*)());
 size_t btree_level_count(btree_t const *);
+
+
+static inline int min(int i, int j)
+{
+    return (i < j) ? i : j;
+}
+
+static inline int max(int i, int j)
+{
+    return (i > j) ? i : j;
+}
+
+static inline void errb(char const *errstr)
+{
+    if (!errstr || !*errstr) {
+        write(2, "no error string\n", 16);
+        return;
+    }
+    write(2, errstr, my_strlen(errstr));
+    _exit(84);
+}
+
+static inline void err(char const *errstr)
+{
+    if (!errstr || !*errstr) {
+        write(2, "no error string\n", 16);
+        return;
+    }
+    write(2, errstr, my_strlen(errstr));
+}
 
 #endif // _MY_H_

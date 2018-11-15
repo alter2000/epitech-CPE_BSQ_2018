@@ -9,30 +9,26 @@
 #include <fcntl.h>
 #include "my.h"
 
-char *getl(int fd, char **b)
-{
-    unsigned int works = 1;
-
-    if (*b == 0)
-        *b = my_bzero(malloc(20 * sizeof(char)), 20 * sizeof(char));
-    for (unsigned long int i = 0; works > 0 && *b[i] != '\n'; i++)
-        works = read(fd, *b, 1);
-    return *b;
-}
-
 int main(int argc, char const **argv)
 {
-    FILE *f;
+    int f;
+    int n = 30;
     char **map = 0;
-    char *buf = 0;
+    char *buf = malloc(30 * sizeof(char));
     unsigned int rows = 0U;
 
     if (argc != 2)
         return 84;
-    f = open(argv[1], O_RDONLY);
+    f =  open(argv[1], O_RDONLY);
     if (f < 0)
         errb("Wrong file\n");
-    map = malloc(getnbr_rec(getl(f, 0), 0) * sizeof(char));
-    for (unsigned int i = 0; getl(f, &map[i]); i++);
-}
+    rows = getnbr_rec(getl(f, &buf, &n), 0);
+    map = malloc(rows * sizeof(char));
+    while ()
+    /* for (unsigned int i = 0; getl(f, &map[i], &n); i++); */
 
+    for (; rows > 0; rows--)
+        free(map[rows]);
+    free(buf);
+    close(f);
+}
