@@ -97,21 +97,21 @@ static inline int max(int i, int j)
     return (i > j) ? i : j;
 }
 
-static inline void errb(char const *errstr)
+static inline signed char errb(char const *errstr)
 {
     if (!errstr || !*errstr) {
         write(2, "no error string\n", 16);
-        return;
+        return 0;
     }
     write(2, errstr, my_strlen(errstr));
     _exit(84);
 }
 
-static inline void err(char const *errstr)
+static inline signed char err(char const *errstr)
 {
     if (!errstr || !*errstr) {
         write(2, "no error string\n", 16);
-        return;
+        return 0;
     }
     write(2, errstr, my_strlen(errstr));
 }

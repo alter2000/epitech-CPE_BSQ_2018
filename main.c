@@ -5,30 +5,39 @@
 ** BSQ main file
 */
 
-#include <sys/stat.h>
-#include <fcntl.h>
 #include "my.h"
+#include "bsq.h"
+
+void finish(char *buf, int f)
+{
+    free(buf);
+    close(f);
+    exit(0);
+}
+
+void bsq(char **map, unsigned int row, unsigned int col, unsigned int cur)
+{
+    /* if (*map == 'o') */
+}
 
 int main(int argc, char const **argv)
 {
-    int f;
     int n = 30;
-    char **map = 0;
-    char *buf = malloc(30 * sizeof(char));
-    unsigned int rows = 0U;
-
-    if (argc != 2)
+    char *buf = malloc(n * sizeof(char));
+    struct stat *fi = malloc(sizeof(struct stat));
+    if (argc != 2 || stat(argv[1], fi))
         return 84;
-    f =  open(argv[1], O_RDONLY);
-    if (f < 0)
-        errb("Wrong file\n");
-    rows = getnbr_rec(getl(f, &buf, &n), 0);
-    map = malloc(rows * sizeof(char));
-    while ()
-    /* for (unsigned int i = 0; getl(f, &map[i], &n); i++); */
+    int f = open(argv[1], O_RDONLY);
+    unsigned int row = (f < 0) ? errb("Error opening file\n") \
+                            : getnbr_rec(getl(f, &buf, &n), 0);
+    unsigned int col;
+    char *map = 0;
 
-    for (; rows > 0; rows--)
-        free(map[rows]);
-    free(buf);
-    close(f);
+    while (!map)
+        map = my_bzero(malloc(fi->st_size), fi->st_size);
+    if (read(f, map, fi->st_size - my_count_digits(row) - 2) < 0)
+        errb("Error reading file\n");
+    for (col = 0; map[col] != '\n'; col++);
+    bsq(single_to_double(map), row, col, 0);
+    finish(buf, f);
 }

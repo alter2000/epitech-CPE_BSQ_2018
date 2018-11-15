@@ -7,7 +7,7 @@
 
 NAME=bsq
 CFLAGS+= -Wall -I./include -L./lib/my -lmy
-SRC=$(wildcard *.c)
+SRC=$(shell find . -name '*.c')
 
 all: $(NAME)
 
