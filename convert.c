@@ -10,9 +10,10 @@
 
 unsigned int count_cols(char const *s)
 {
-    unsigned int col;
+    unsigned int col = 0;
 
-    for (col = 0; *s != '\n'; col++);
+    while (s[col] != '\n')
+        col++;
     return col;
 }
 
@@ -25,19 +26,38 @@ unsigned int count_lines(char const *s)
     return line;
 }
 
-char **single_to_double(char const *s)
+map_t *mkmap(size_t const cols, size_t const lines)
 {
-    unsigned int ln = count_lines(s);
-    unsigned int col = count_cols(s);
-    unsigned int i = 0;
-    char **map = malloc(sizeof(char *) * (ln + 2));
+    map_t *map = malloc(sizeof(map_t));
+    map->m = my_bzero(malloc(sizeof(char *) * (lines + 2)), \
+                        sizeof(char *) * (lines + 2));
+    map->cols = cols;
+    map->rows = lines;
 
-    for (unsigned int j = 0, k = 0; i < ln; i++, j++, k = 0) {
-        map[i] = malloc(sizeof(char) * col);
-        while (s[j] != '\n')
-            map[i][k++] = s[j++];
-        my_putchar('k');
-    }
-    map[i] = 0;
     return map;
+}
+
+map_t *str_to_map(char const *s)
+{
+    unsigned int i = 0;
+    map_t *map = mkmap(count_cols(s), count_lines(s));
+
+    for (unsigned int j = 0, k = 0; i < map->rows; j++, k = 0) {
+        map->m[i] = malloc(sizeof(char) * map->cols + 2);
+        while (s[j] != '\n')
+            map->m[i][k++] = s[j++];
+        map->m[i++][k] = 0;
+    }
+    map->m[i] = 0;
+    return map;
+}
+
+sq_t *mksq(unsigned int const x, unsigned int const y, unsigned int const side)
+{
+    sq_t *square = malloc(sizeof(sq_t));
+
+    square->x = x;
+    square->y = y;
+    square->side = side;
+    return square;
 }

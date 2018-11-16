@@ -114,6 +114,7 @@ static inline signed char err(char const *errstr)
         return 0;
     }
     write(2, errstr, my_strlen(errstr));
+    return 0;
 }
 
 #endif // _MY_H_
