@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2018
-** CPool_Day06_2018
+** muhlib
 ** File description:
 ** find string in string
 */

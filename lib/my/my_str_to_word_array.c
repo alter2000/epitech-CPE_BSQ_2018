@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2018
-** CPool_Day08_2018
+** muhlib
 ** File description:
 ** change string to word array
 */
@@ -58,4 +58,29 @@ char **my_str_to_word_array(char const *str)
     }
     arr[i] = 0;
     return arr;
+}
+
+int my_show_word_array(char const *tab[])
+{
+    int i = 0;
+
+    for (; tab[i]; i++) {
+        my_putstr(tab[i]);
+        my_putchar('\n');
+    }
+    return i;
+}
+
+int my_show_int_array(char const *tab[])
+{
+    int j = 0;
+
+    for (unsigned int i = 0; tab[i]; i++) {
+        for (; tab[i][j]; j++) {
+            my_put_nbr(tab[i][j]);
+            my_putchar('\t');
+        }
+        my_putchar('\n');
+    }
+    return j;
 }

@@ -31,8 +31,8 @@ map_t *mkmap(size_t const cols, size_t const lines)
     map_t *map = malloc(sizeof(map_t));
     map->m = my_bzero(malloc(sizeof(char *) * (lines + 2)), \
                         sizeof(char *) * (lines + 2));
-    map->cols = cols;
-    map->rows = lines;
+    map->col = cols;
+    map->row = lines;
 
     return map;
 }
@@ -42,8 +42,8 @@ map_t *str_to_map(char const *s)
     unsigned int i = 0;
     map_t *map = mkmap(count_cols(s), count_lines(s));
 
-    for (unsigned int j = 0, k = 0; i < map->rows; j++, k = 0) {
-        map->m[i] = malloc(sizeof(char) * map->cols + 2);
+    for (unsigned int j = 0, k = 0; i < map->row; j++, k = 0) {
+        map->m[i] = malloc(sizeof(char) * map->col + 2);
         while (s[j] != '\n')
             map->m[i][k++] = s[j++];
         map->m[i++][k] = 0;

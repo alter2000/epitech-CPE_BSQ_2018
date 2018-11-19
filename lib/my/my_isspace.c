@@ -9,7 +9,5 @@
 
 int my_isspace(char const ch)
 {
-    if (ch == ' ' || ch == '\t' || ch == '\v'|| ch == '\r' || ch == '\n')
-        return 0;
-    return 1;
+    return (ch == ' ' || ch == '\t' || ch == '\v'|| ch == '\r' || ch == '\n');
 }

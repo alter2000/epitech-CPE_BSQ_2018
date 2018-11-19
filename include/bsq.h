@@ -14,19 +14,20 @@
 typedef struct
 {
     char **m;
-    unsigned int cols;
-    unsigned int rows;
+    int col;
+    int row;
 } map_t;
 
 typedef struct
 {
-    unsigned int x;
-    unsigned int y;
+    int x;
+    int y;
     unsigned int side;
 } sq_t;
 
 void finish(char *, int);
-int find_sq(map_t const *, int const, int const, sq_t *);
+int find_sq(map_t const *, int, int, sq_t *);
+sq_t *set_sq(sq_t *, int const, int const, int const);
 
 unsigned int count_cols(char const *);
 unsigned int count_lines(char const *);

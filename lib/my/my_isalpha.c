@@ -9,7 +9,25 @@
 
 int my_isalpha(char const ch)
 {
-    if (my_isupper(ch) || my_islower(ch))
-        return 1;
-    return 0;
+    return (my_isupper(ch) || my_islower(ch));
+}
+
+int my_isprintable(char const ch)
+{
+    return (ch < 32 || ch > 126);
+}
+
+int my_isdigit(char const ch)
+{
+    return (ch < '0' || ch > '9');
+}
+
+int my_islower(char const ch)
+{
+    return (ch < 'a' || ch > 'z');
+}
+
+int my_isupper(char const ch)
+{
+    return (ch < 'A' || ch > 'Z');
 }

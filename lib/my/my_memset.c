@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2018
-** CPool_infinadd_2018
+** muhlib
 ** File description:
 ** memset(3) clone
 */
@@ -11,7 +11,12 @@ void *my_memset(char *s, short ch, size_t n)
 {
     if (!s)
         return 0;
-    for (unsigned long long int i = 0; i < n; i++)
+    for (size_t i = 0; i < n; i++)
         s[i] = ch;
     return s;
+}
+
+void *my_nul(char *s, size_t n)
+{
+    return my_memset(s, 0, n);
 }

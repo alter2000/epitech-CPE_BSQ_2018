@@ -6,21 +6,20 @@
 */
 
 #include "my.h"
+#include <fcntl.h>
 
 char *getd(int fd, char **lp, int *n, char delim) {
     int ch = 0;
     unsigned int pos = 0;
 
-    if (!lp || !fd || !n || read((size_t) fd, &ch, 1) != 1 || (char) ch == EOF)
+    if (!lp || !fd || !n || read((size_t) fd, &ch, 1) != 1)
         return 0;
     while (!*lp) {
         *n = 30;
         *lp = malloc(*n);
     }
-    while(ch != EOF) {
-        ((unsigned char *)(*lp))[pos++] = ch;
-        if (ch == delim)
-            break;
+    while (ch != EOF && ch != delim) {
+        ((unsigned char *) (*lp))[pos++] = ch;
         read((size_t) fd, &ch, 1);
     }
     (*lp)[pos] = '\0';

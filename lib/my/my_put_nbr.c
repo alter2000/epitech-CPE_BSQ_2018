@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2018
-** CPool_Day03_2018
+** muhlib
 ** File description:
-** print number on stdout
+** print number on stdout + get llong
 */
 
 #include "my.h"
@@ -31,4 +31,42 @@ int my_put_nbr_base(int nb, char const *base)
 int my_put_nbr(int nb)
 {
     return my_put_nbr_base(nb, "0123456789");
+}
+
+char *my_itoa(int nb)
+{
+    short sign = (nb < 0);
+    char *str = malloc(my_count_digits(nb) + sign + 1);
+    short left = 0;
+    unsigned int i = 0;
+    nb = (nb < 0) ? -nb : nb;
+
+    while (!str)
+        str = malloc(my_count_digits(nb) + sign + 1);
+    do {
+        left = nb % 10;
+        nb /= 10;
+        str[i++] = left + '0';
+    } while (nb > 0);
+    if (sign)
+        str[i++] = '-';
+    str[i] = '\0';
+    return my_revstr(str);
+}
+
+long long int my_strtoll(char *s, char **end, long long int rec)
+{
+    if (rec < LLONG_MIN + 100)
+        return LLONG_MIN;
+    if (rec > LLONG_MAX - 100)
+        return LLONG_MAX;
+    if (*s && *(s + 1) && (*s == '-' && my_isdigit(*(s + 1)))) {
+        end++;
+        return -my_strtoll((s + 1), end, rec * 10);
+    }
+    if (*s && my_isdigit(*s)) {
+        end++;
+        return my_strtoll((s + 1), end, rec * 10  + (*s - '0'));
+    }
+    return rec;
 }

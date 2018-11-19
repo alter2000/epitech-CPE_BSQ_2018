@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2018
-** CPool_Day06_2018
+** muhlib
 ** File description:
 ** reverse() implementation
 */
@@ -11,14 +11,25 @@ char *my_revstr(char *str)
 {
     int a = 0;
     int b = my_strlen(str) - 1;
-    int c;
 
     if (!str)
         return 0;
-    while (a < b) {
-        c = str[a];
-        str[a++] = str[b];
-        str[b--] = c;
-    }
+    while (a < b)
+        my_swap((int *) &str[a], (int *) &str[b]);
     return str;
+}
+
+void my_swap(int *a, int *b)
+{
+    *a = *a ^ *b;
+    *b = *b ^ *a;
+    *a = *a ^ *b;
+}
+
+void my_sort_int_array(int *array, int size)
+{
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size - 1; j++)
+            if (array[j] > array[j + 1])
+                my_swap(&array[j], &array[j + 1]);
 }

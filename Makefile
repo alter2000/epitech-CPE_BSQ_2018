@@ -8,6 +8,7 @@
 NAME=bsq
 CFLAGS+= -Wall -I./include -L./lib/my -lmy
 SRC=$(shell find . -name '*.c')
+OBJ=$(SRC:.c=.o)
 
 all: $(NAME)
 
