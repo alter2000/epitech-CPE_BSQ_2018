@@ -15,6 +15,12 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+typedef unsigned long long int ull_t;
+typedef unsigned long int ul_t;
+typedef unsigned int uint_t;
+typedef long long int ll_t;
+typedef long int l_t;
+
 unsigned long long int my_strlen(char const *);
 int my_putchar(int const);
 long long int my_putstr(char const *);
@@ -97,7 +103,7 @@ static inline int max(int i, int j)
 static inline signed char errb(char const *errstr)
 {
     if (!errstr || !*errstr) {
-        write(2, "no error string\n", 16);
+        write(2, "err: no error string\n", 21);
         return 0;
     }
     write(2, errstr, my_strlen(errstr));
@@ -107,7 +113,7 @@ static inline signed char errb(char const *errstr)
 static inline signed char err(char const *errstr)
 {
     if (!errstr || !*errstr) {
-        write(2, "no error string\n", 16);
+        write(2, "errb: no error string\n", 22);
         return 0;
     }
     write(2, errstr, my_strlen(errstr));

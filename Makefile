@@ -6,8 +6,8 @@
 ##
 
 NAME=bsq
-CFLAGS+= -Wall -I./include -L./lib/my -lmy
-SRC=$(shell find . -name '*.c')
+CFLAGS+= -Werror -Wall -I./include -L./lib/my -lmy
+SRC=$(wildcard *.c)
 OBJ=$(SRC:.c=.o)
 
 all: $(NAME)
@@ -25,14 +25,13 @@ clean:
 	@$(MAKE) -C ./lib/my clean
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(NAME) unit_tests
 	@$(MAKE) -C ./lib/my fclean
 
 re: fclean $(NAME)
 
 tests_run:
 	gcc -o unit_tests $(shell find ./tests/ -name '*.c') $(filter-out main.c, $(SRC)) \
-		--coverage -lcriterion $(CFLAGS)
-	./unit_tests
+		-lcriterion --coverage $(CFLAGS) && ./unit_tests
 
-.PHONY: all clean fclean re debug tests_run
+.PHONY: all debug clean fclean re tests_run

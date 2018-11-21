@@ -5,10 +5,10 @@
 ** map string to double array
 */
 
-#include "my.h"
-#include "bsq.h"
+#include "include/my.h"
+#include "include/bsq.h"
 
-unsigned int count_cols(char const *s)
+static unsigned int count_cols(char const *s)
 {
     unsigned int col = 0;
 
@@ -17,7 +17,7 @@ unsigned int count_cols(char const *s)
     return col;
 }
 
-unsigned int count_lines(char const *s)
+static unsigned int count_lines(char const *s)
 {
     unsigned int line = 0;
 
@@ -29,12 +29,22 @@ unsigned int count_lines(char const *s)
 map_t *mkmap(size_t const cols, size_t const lines)
 {
     map_t *map = malloc(sizeof(map_t));
-    map->m = my_bzero(malloc(sizeof(char *) * (lines + 2)), \
+
+    map->m = (char **) my_nul(malloc(sizeof(char *) * (lines + 2)), \
                         sizeof(char *) * (lines + 2));
     map->col = cols;
     map->row = lines;
-
     return map;
+}
+
+sq_t *mksq(unsigned int const x, unsigned int const y, unsigned int const side)
+{
+    sq_t *square = malloc(sizeof(sq_t));
+
+    square->x = x;
+    square->y = y;
+    square->side = side;
+    return square;
 }
 
 map_t *str_to_map(char const *s)
@@ -50,14 +60,4 @@ map_t *str_to_map(char const *s)
     }
     map->m[i] = 0;
     return map;
-}
-
-sq_t *mksq(unsigned int const x, unsigned int const y, unsigned int const side)
-{
-    sq_t *square = malloc(sizeof(sq_t));
-
-    square->x = x;
-    square->y = y;
-    square->side = side;
-    return square;
 }
