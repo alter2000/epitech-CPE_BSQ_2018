@@ -1,6 +1,7 @@
 **/*.o
 **/*.gc*
 **/libmy.a
+**/vgcore*
 bsq
 idk.c
 **/*.out
