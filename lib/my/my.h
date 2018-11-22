@@ -120,4 +120,15 @@ static inline signed char err(char const *errstr)
     return 0;
 }
 
+static inline signed char errc(char *buf, char const *errstr)
+{
+    if (!errstr || !*errstr || !buf || !*buf) {
+        write(2, "errc: no error string or buffer\n", 32);
+        return 0;
+    }
+    write(2, errstr, my_strlen(errstr));
+    free(buf);
+    return 0;
+}
+
 #endif // _MY_H_

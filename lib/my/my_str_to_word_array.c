@@ -62,7 +62,7 @@ char **my_str_to_word_array(char const *str)
 
 int my_show_word_array(char const *tab[])
 {
-    int i = 0;
+    uint_t i = 0;
 
     for (; tab[i]; i++) {
         my_putstr(tab[i]);

@@ -27,14 +27,17 @@ typedef struct
 } sq_t;
 
 sq_t *set_sq(sq_t *, int const, int const, int const);
-int find_sq(map_t const *, sq_t *, int);
 int binsearch(char const *, unsigned int const, char const);
-int square(map_t const*, sq_t *, int);
+int issquare(map_t const *, int, int, int);
+void check_square(map_t const *, sq_t *, int, int);
+sq_t *find_sq(map_t const *, sq_t *, int);
 
 map_t *mkmap(size_t const, size_t const);
-map_t *str_to_map(char const *);
+map_t *str_to_map(char *);
 sq_t *mksq(unsigned int const, unsigned int const, unsigned int const);
 
+char ** const fill_sq(map_t const *, sq_t const *);
 map_t *set_map(char const *);
+void print_map(char const **);
 
 #endif // BSQ_H

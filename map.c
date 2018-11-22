@@ -4,6 +4,9 @@
 ** File description:
 ** map string to double array
 */
+/* map->m[i] = 0; */
+/* while (!map->m[i]) */
+/*     malloc(sizeof(char) * map->col + 2); */
 
 #include "include/my.h"
 #include "include/bsq.h"
@@ -13,7 +16,7 @@ static unsigned int count_cols(char const *s)
     unsigned int col = 0;
 
     while (s[col] != '\n')
-        col++;
+        ++col;
     return col;
 }
 
@@ -22,7 +25,8 @@ static unsigned int count_lines(char const *s)
     unsigned int line = 0;
 
     while (*s)
-        line += (*s++ == '\n');
+        if (*s++ == '\n')
+            ++line;
     return line;
 }
 
@@ -47,7 +51,7 @@ sq_t *mksq(unsigned int const x, unsigned int const y, unsigned int const side)
     return square;
 }
 
-map_t *str_to_map(char const *s)
+map_t *str_to_map(char *s)
 {
     unsigned int i = 0;
     map_t *map = mkmap(count_cols(s), count_lines(s));
@@ -58,6 +62,7 @@ map_t *str_to_map(char const *s)
             map->m[i][k++] = s[j++];
         map->m[i++][k] = 0;
     }
+    free(s);
     map->m[i] = 0;
     return map;
 }
