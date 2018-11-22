@@ -21,7 +21,7 @@ debug:
 	clang -o $(NAME) $(SRC) $(CFLAGS) -g
 
 clean:
-	@rm -f $(OBJ)
+	@rm -f $(OBJ) $(wildcard *.gc*) $(wildcard vgcore.*)
 	@$(MAKE) -C ./lib/my clean
 
 fclean: clean

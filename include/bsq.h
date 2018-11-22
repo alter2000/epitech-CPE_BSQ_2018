@@ -26,10 +26,6 @@ typedef struct
     unsigned int side;
 } sq_t;
 
-sq_t *set_sq(sq_t *, int const, int const, int const);
-int binsearch(char const *, unsigned int const, char const);
-int issquare(map_t const *, int, int, int);
-void check_square(map_t const *, sq_t *, int, int);
 sq_t *find_sq(map_t const *, sq_t *, int);
 
 map_t *mkmap(size_t const, size_t const);

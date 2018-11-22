@@ -5,22 +5,6 @@
 ** writing and reading functions
 */
 
-/*
-** if (square(m, sq, side)) {
-**     printf("cell: <%c>\tsquare:\t%2d*%2d,\tlen: %2d\n", m->m[sq->x][sq->y],
-**     sq->x, sq->y, sq->side);
-**     return find_sq(m, set_sq(sq, -1, -1, sq->side + 1), side + 1);
-** } else {
-**     printf("cell: <%c>\tx: %2u\ty: %2u\tlen: %2u\n", m->m[sq->x][sq->y],
-**     sq->x, sq->y, sq->side);
-**     if (sq->x + sq->side >= m->col)
-**         find_sq(m, set_sq(sq, 0, sq->y + 1, sq->side), 1);
-**     if (sq->y + sq->side >= m->row)
-**         return 0;
-**     return find_sq(m, set_sq(sq, sq->x + 1, sq->y, sq->side), 1);
-** }
- */
-
 #include "bsq.h"
 #include "my.h"
 

@@ -8,7 +8,7 @@
 #include "include/bsq.h"
 #include "include/my.h"
 
-sq_t *set_sq(sq_t *sq, int const x, int const y, int const side)
+static sq_t *set_sq(sq_t *sq, int const x, int const y, int const side)
 {
     if (!sq)
         errb("set_sq: no square struct.\n");
@@ -20,20 +20,20 @@ sq_t *set_sq(sq_t *sq, int const x, int const y, int const side)
     return sq;
 }
 
-int binsearch(char const *range, unsigned int const len, char const query)
+static int binsearch(char const *range, unsigned int const len, char const q)
 {
     if (!range || !*range || *range == '\n')
         return 0;
-    if (*range == query)
+    if (*range == q)
         return 1;
     if (len > 0)
-        return (*range == query) + binsearch(range, len / 2, query)
-            + binsearch(range + len / 2, len / 2, query);
+        return (*range == q) + binsearch(range, len / 2, q)
+            + binsearch(range + len / 2, len / 2, q);
     else
         return 0;
 }
 
-int issquare(map_t const *m, int row, int col, int side)
+static int issquare(map_t const *m, int row, int col, int side)
 {
     if (row > m->row || col > m->col \
         || (row + side) > m->row || (col + side) > m->col)
@@ -44,27 +44,23 @@ int issquare(map_t const *m, int row, int col, int side)
     return 1;
 }
 
-void check_square(map_t const *m, sq_t *sq, int x, int y)
+static void check_square(map_t const *m, sq_t *sq, int x, int y)
 {
-    uint_t largest = 0;
+    int largest = 0;
 
     while (m->m[y][x + largest] && m->m[y][x + largest] != 'o' &&
             m->m[y][x + largest] != '\n')
         ++largest;
     while (largest > sq->side && !issquare(m, y, x, largest))
         --largest;
-    if (largest > sq->side) {
-        sq->side = largest;
-        sq->y = y;
-        sq->x = x;
-    }
+    set_sq(sq, x, y, largest);
     return;
 }
 
 sq_t *find_sq(map_t const *m, sq_t *sq, int side)
 {
     for (uint_t y = 0, x = 0; y < m->row; ++y, x = 0) {
-        while (x < m->col && m->m[y][x] != '\n')
+        while (x <= m->col && m->m[y][x] != '\n')
             check_square(m, sq, x++, y);
     }
     return sq;
