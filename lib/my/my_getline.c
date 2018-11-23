@@ -8,7 +8,8 @@
 #include "my.h"
 #include <fcntl.h>
 
-char *getd(int fd, char **lp, int *n, char delim) {
+char *getd(int fd, char **lp, int *n, char delim)
+{
     int ch = 0;
     unsigned int pos = 0;
 
@@ -26,6 +27,7 @@ char *getd(int fd, char **lp, int *n, char delim) {
     return *lp;
 }
 
-char *getl(int fd, char **lp, int *blen) {
+char *getl(int fd, char **lp, int *blen)
+{
     return getd(fd, lp, blen, '\n');
 }

@@ -16,6 +16,7 @@ link: $(OBJ)
 	@mkdir -p ../../include
 	@cp -f ./libmy.a ../libmy.a
 	@cp -f ./my.h ../../include/my.h
+	@cp -f ./colors.h ../../include/colors.h
 
 debug: $(SRC) $(OBJ)
 	@gcc -c -g $(SRC) $(CFLAGS)

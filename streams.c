@@ -33,11 +33,12 @@ static char *check_board(char *s)
     return s;
 }
 
-char ** const fill_sq(map_t const * m, sq_t const *sq)
+char ** const fill_sq(map_t const * m, sq_t *sq)
 {
     for (uint_t y = sq->y; y < sq->y + sq->side; ++y)
         for (uint_t x = sq->x; x < sq->x + sq->side; ++x)
             m->m[y][x] = 'x';
+    free(sq);
     return m->m;
 }
 
@@ -61,7 +62,10 @@ map_t *set_map(char const *path)
     return str_to_map(check_board(s));
 }
 
-void print_map(char const **map)
+void print_map(char **map)
 {
     my_show_word_array((char const **) map);
+    for (uint_t i = 0; map[i]; ++i)
+        free(map[i]);
+    free(map);
 }

@@ -12,9 +12,9 @@ static int count_letters(char const *str)
 {
     unsigned int letters = 0;
 
-    for (int i = 0; str[i] && (my_isdigit(str[i]) || my_isalpha(str[i])); i++) {
+    for (int i = 0; str[i] && \
+            (my_isdigit(str[i]) || my_isalpha(str[i])); i++)
         letters++;
-    }
     return letters;
 }
 
@@ -47,7 +47,7 @@ char **my_str_to_word_array(char const *str)
     while (!arr)
         arr = malloc(sizeof(char *) * (words + 10));
     for (int j = 0; str[j]; j++, i++) {
-        arr[i] = malloc(letters * sizeof(char));
+        arr[i] = 0;
         while (!arr[i])
             arr[i] = malloc(letters * sizeof(char));
         while (!my_isalpha(str[j]) && !my_isdigit(str[j]))

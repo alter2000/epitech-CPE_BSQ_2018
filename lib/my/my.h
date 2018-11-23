@@ -89,18 +89,23 @@ void btree_apply_prefix(btree_t *, long long int (*)(char *));
 void btree_insert_data(btree_t *, char *, int (*)());
 size_t btree_level_count(btree_t const *);
 
+inline int min(int, int);
+inline int max(int, int);
+inline signed char errb(char const *);
+inline signed char err(char const *);
+inline signed char errc(char *, char const *);
 
-static inline int min(int i, int j)
+inline int min(int i, int j)
 {
     return (i < j) ? i : j;
 }
 
-static inline int max(int i, int j)
+inline int max(int i, int j)
 {
     return (i > j) ? i : j;
 }
 
-static inline signed char errb(char const *errstr)
+inline signed char errb(char const *errstr)
 {
     if (!errstr || !*errstr) {
         write(2, "err: no error string\n", 21);
@@ -110,7 +115,7 @@ static inline signed char errb(char const *errstr)
     _exit(84);
 }
 
-static inline signed char err(char const *errstr)
+inline signed char err(char const *errstr)
 {
     if (!errstr || !*errstr) {
         write(2, "errb: no error string\n", 22);
@@ -120,7 +125,7 @@ static inline signed char err(char const *errstr)
     return 0;
 }
 
-static inline signed char errc(char *buf, char const *errstr)
+inline signed char errc(char *buf, char const *errstr)
 {
     if (!errstr || !*errstr || !buf || !*buf) {
         write(2, "errc: no error string or buffer\n", 32);

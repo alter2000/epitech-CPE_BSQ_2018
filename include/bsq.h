@@ -31,8 +31,8 @@ sq_t *find_sq(map_t const *, sq_t *, int);
 map_t *str_to_map(char *);
 sq_t *mksq(unsigned int const, unsigned int const, unsigned int const);
 
-char ** const fill_sq(map_t const *, sq_t const *);
+char ** const fill_sq(map_t const *, sq_t *);
 map_t *set_map(char const *);
-void print_map(char const **);
+void print_map(char **);
 
 #endif // BSQ_H

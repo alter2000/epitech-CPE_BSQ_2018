@@ -18,12 +18,10 @@ int my_put_nbr_base(int nb, char const *base)
     if (nb < 0) {
         my_putchar('-');
         my_put_nbr_base(-nb, base);
-    }
-    if (nb > b - 1) {
+    } else if (nb > b - 1) {
         my_put_nbr_base(nb / b, base);
         my_put_nbr_base(nb % b, base);
-    }
-    if (nb >= 0 && nb < b)
+    } else
         my_putchar(base[nb]);
     return nb;
 }
@@ -63,10 +61,9 @@ long long int my_strtoll(char *s, char **end, long long int rec)
     if (*s && *(s + 1) && (*s == '-' && my_isdigit(*(s + 1)))) {
         end++;
         return -my_strtoll((s + 1), end, rec * 10);
-    }
-    if (*s && my_isdigit(*s)) {
+    } else if (*s && my_isdigit(*s)) {
         end++;
         return my_strtoll((s + 1), end, rec * 10  + (*s - '0'));
-    }
-    return rec;
+    } else
+        return rec;
 }

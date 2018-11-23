@@ -15,7 +15,7 @@ int my_str_isalpha(char const *str)
     return 1;
 }
 
-int my_str_islower(const char *str)
+int my_str_islower(char const *str)
 {
     for (int i = 0; str && str[i]; i++)
         if (!my_islower(str[i]))

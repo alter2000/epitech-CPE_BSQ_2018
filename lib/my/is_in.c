@@ -28,5 +28,6 @@ char *my_strstr(char *str, const char *to_find)
 
 int my_isspace(char const ch)
 {
-    return (ch == ' ' || ch == '\t' || ch == '\v'|| ch == '\r' || ch == '\n');
+    return (ch == ' ' || ch == '\t' || ch == '\v' \
+            || ch == '\r' || ch == '\n');
 }

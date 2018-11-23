@@ -39,7 +39,8 @@ static map_t *mkmap(size_t const cols, size_t const lines)
     return map;
 }
 
-sq_t *mksq(unsigned int const x, unsigned int const y, unsigned int const side)
+sq_t *mksq(unsigned int const x, unsigned int const y, \
+        unsigned int const side)
 {
     sq_t *square = malloc(sizeof(sq_t));
 

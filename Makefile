@@ -31,7 +31,8 @@ fclean: clean
 re: fclean $(NAME)
 
 tests_run:
-	gcc -o unit_tests $(shell find ./tests/ -name '*.c') $(filter-out main.c, $(SRC)) \
+	gcc -o unit_tests $(shell find ./tests/ -name '*.c') \
+		$(filter-out main.c, $(SRC)) \
 		-lcriterion --coverage $(CFLAGS) && ./unit_tests
 
 .PHONY: all debug clean fclean re tests_run

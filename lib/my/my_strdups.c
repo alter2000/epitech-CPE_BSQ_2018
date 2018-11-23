@@ -12,7 +12,7 @@ char *my_strcat(char *dest, char const *src)
     int i = 0;
     int len = my_strlen(dest);
 
-    for (;src[i]; i++)
+    for (; src[i]; i++)
         dest[i + len] = src[i];
     dest[i + len] = 0;
     return dest;
@@ -23,7 +23,7 @@ char *my_strncat(char *dest, char const *src, int n)
     int i = 0;
     char *len = dest + my_strlen(dest);
 
-    for (;src[i] && i < n; i++)
+    for (; src[i] && i < n; i++)
         len[i] = src[i];
     len[i] = 0;
     return dest;

@@ -14,20 +14,20 @@ int my_isalpha(char const ch)
 
 int my_isprintable(char const ch)
 {
-    return (ch < 32 || ch > 126);
+    return (ch >= 32 && ch <= 126);
 }
 
 int my_isdigit(char const ch)
 {
-    return (ch < '0' || ch > '9');
+    return (ch >= '0' && ch <= '9');
 }
 
 int my_islower(char const ch)
 {
-    return (ch < 'a' || ch > 'z');
+    return (ch >= 'a' && ch <= 'z');
 }
 
 int my_isupper(char const ch)
 {
-    return (ch < 'A' || ch > 'Z');
+    return (ch >= 'A' && ch <= 'Z');
 }
