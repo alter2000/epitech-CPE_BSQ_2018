@@ -55,7 +55,7 @@ static void check_sq(map_t const *m, sq_t *sq, int const x, int const y)
     for (; m->m[y][x + side] == '.'; ++side);
     /* printf("sq_add:      <%2d %2d %2d > ||%c|| cur: <%2d %2d %2d >\n", sq->y, sq->x, sq->side, m->m[y][x], y, x, side); */
     for (; side > sq->side && !issquare(m, y, x, side); --side);
-    printf("sq_biggest:  <%2d %2d %2d > <<%c>> cur: <%2d %2d %2d >\n", sq->y, sq->x, sq->side, m->m[y][x], y, x, side);
+    /* printf("sq_biggest:  <%2d %2d %2d > <<%c>> cur: <%2d %2d %2d >\n", sq->y, sq->x, sq->side, m->m[y][x], y, x, side); */
     while (side > sq->side && !issquare(m, y, x, side))
     set_sq(sq, y, x, side);
 }

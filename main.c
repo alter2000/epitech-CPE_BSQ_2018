@@ -14,8 +14,8 @@ int main(int argc, char const **argv)
         errb("Wrong number of arguments.\n");
     map_t *m = set_map(argv[1]);
     sq_t *sq = mksq(0, 0, 0);
-    fill_sq(m, find_sq(m, sq, 1));
-    /* print_map((char const **) fill_sq(m, find_sq(m, sq, 1))); */
-    printf("END___SQUARE\tx: %2u\ty: %2u\tlen: %2u\n", sq->x, sq->y, sq->side);
+    /* fill_sq(m, find_sq(m, sq, 1)); */
+    print_map((char const **) fill_sq(m, find_sq(m, sq, 1)));
+    /* printf("END___SQUARE\tx: %2u\ty: %2u\tlen: %2u\n", sq->x, sq->y, sq->side); */
     return 0;
 }
