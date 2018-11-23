@@ -28,7 +28,6 @@ typedef struct
 
 sq_t *find_sq(map_t const *, sq_t *, int);
 
-map_t *mkmap(size_t const, size_t const);
 map_t *str_to_map(char *);
 sq_t *mksq(unsigned int const, unsigned int const, unsigned int const);
 
