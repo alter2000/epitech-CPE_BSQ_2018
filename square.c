@@ -32,10 +32,12 @@ static int issquare(map_t const *m, int row, int col, int side)
     return 1;
 }
 
-static sq_t *set_sq(sq_t *sq, int const x, int const y, int const side)
+static sq_t *set_sq(sq_t *sq, int const y, int const x, int const side)
 {
-    if (!sq)
-        errb("set_sq: no square struct.\n");
+    if (!sq) {
+        err("set_sq: no square struct; making one\n");
+        mksq(0, 0, 0);
+    }
     if (sq->side < side) {
         sq->x = x;
         sq->y = y;
@@ -48,11 +50,14 @@ static void check_sq(map_t const *m, sq_t *sq, int const x, int const y)
 {
     int side = 0;
 
-    while (!binsearch(m->m[y], (unsigned int) side, 'o'))
-        ++side;
+    if (!m || !m->m[0] || !sq)
+        errb("check_sq: no square struct, no map struct or no map array\n");
+    for (; m->m[y][x + side] == '.'; ++side);
+    /* printf("sq_add:      <%2d %2d %2d > ||%c|| cur: <%2d %2d %2d >\n", sq->y, sq->x, sq->side, m->m[y][x], y, x, side); */
+    for (; side > sq->side && !issquare(m, y, x, side); --side);
+    printf("sq_biggest:  <%2d %2d %2d > <<%c>> cur: <%2d %2d %2d >\n", sq->y, sq->x, sq->side, m->m[y][x], y, x, side);
     while (side > sq->side && !issquare(m, y, x, side))
-        --side;
-    set_sq(sq, x, y, side);
+    set_sq(sq, y, x, side);
 }
 
 sq_t *find_sq(map_t const *m, sq_t *sq, int const side)
@@ -60,8 +65,9 @@ sq_t *find_sq(map_t const *m, sq_t *sq, int const side)
     if (!m || !m->m || !m->m[0])
         errb("find_sq: no map\n");
     for (uint_t y = 0, x = 0; y < m->row; ++y, x = 0) {
-        for (; x <= m->col && m->m[y] && m->m[y][x] != '\n'; ++x)
+        for (; x <= m->col && m->m[y] && m->m[y][x] && m->m[y][x] != '\n'; ++x)
             check_sq(m, sq, x, y);
     }
     return sq;
 }
+/* !binsearch(m->m[y], side, 'o') */
