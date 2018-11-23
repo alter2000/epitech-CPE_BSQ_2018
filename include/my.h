@@ -32,7 +32,7 @@ long long int my_getnbr(char const *);
 long long int getnbr_rec(char const *, long long int);
 long long int my_strtoll(char *, char **, long long int);
 char *my_itoa(int);
-int is_in(char, char *);
+int is_in(char const, char const *);
 
 void my_swap(int *, int *);
 
