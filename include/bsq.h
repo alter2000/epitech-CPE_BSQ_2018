@@ -26,7 +26,7 @@ typedef struct
     unsigned int side;
 } sq_t;
 
-sq_t *find_sq(map_t const *, sq_t *, int);
+sq_t *find_sq(map_t const *, sq_t *, int const);
 
 map_t *str_to_map(char *);
 sq_t *mksq(unsigned int const, unsigned int const, unsigned int const);

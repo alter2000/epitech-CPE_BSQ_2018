@@ -9,9 +9,9 @@
 #include "my.h"
 #include "bsq.h"
 
-Test(binsearch, all)
-{
-    cr_expect(binsearch("2134567890", 10, '4') == 1);
-    cr_expect(binsearch("2131567890", 10, '4') == 0);
-    cr_expect(binsearch("2434567890", 10, '4') == 2);
-}
+/* Test(binsearch, all) */
+/* { */
+/*     cr_expect(binsearch("2134567890", 10, '4') == 1); */
+/*     cr_expect(binsearch("2131567890", 10, '4') == 0); */
+/*     cr_expect(binsearch("2434567890", 10, '4') == 2); */
+/* } */

@@ -22,10 +22,8 @@ static int issquare(map_t const *m, int row, int col, int side)
 
 static sq_t *set_sq(sq_t *sq, int const y, int const x, int const side)
 {
-    if (!sq) {
-        err("set_sq: no square struct; making one\n");
-        mksq(0, 0, 0);
-    }
+    if (!sq)
+        err("set_sq: no square struct\n");
     if (sq->side < side) {
         sq->x = x;
         sq->y = y;
@@ -54,4 +52,13 @@ sq_t *find_sq(map_t const *m, sq_t *sq, int const side)
                 && m->m[y][x] != '\n'; ++x)
             check_sq(m, sq, y, x);
     return sq;
+}
+
+char ** const fill_sq(map_t const * m, sq_t *sq)
+{
+    for (uint_t y = sq->y; y < sq->y + sq->side; ++y)
+        for (uint_t x = sq->x; x < sq->x + sq->side; ++x)
+            m->m[y][x] = 'x';
+    free(sq);
+    return m->m;
 }

@@ -11,35 +11,45 @@
 static int skip_line(int fd)
 {
     char buf = 0;
+    uint_t r;
 
     if (fd < 0)
         errb("Error opening file\n");
-    while (buf != '\n')
-        read(fd, &buf, 1);
+    r = read(fd, &buf, 1);
+    while (buf != '\n') {
+        if (r == -1)
+            errb("error reading\n");
+        if (buf < '0' || buf > '9')
+            errb("line contains non-digits\n");
+        if (r == 0)
+            errb("out of lines\n");
+        r = read(fd, &buf, 1);
+    }
     return fd;
 }
 
 static char *check_board(char *s)
 {
-    unsigned int i = 0;
+    uint_t col = 0;
+    uint_t i = 0;
 
-    while (s[i] != '\n')
-        ++i;
-    for (; s[i]; ++i)
+    if (!s)
+        errb("no text in map\n");
+    while (s[i++] != '\n')
+        ++col;
+    for (uint_t tmp = 0, i = 0; s[i]; ++i) {
+        ++tmp;
         if (s[i] != '.' && s[i] != 'o' && s[i] != '\n')
-            errc(s, s);
-    if (s[i - 1] && s[i - 1] != '\n')
-        errc(s, s);
+            errc(s, "invalid map\n");
+        if (s[i] == '\n') {
+            if (tmp - 1 != col)
+                errc(s, "non-rectangular map\n");
+            tmp = 0;
+        }
+    }
+    if (col == 0 || s[i - 1] != '\n')
+        errc(s, "invalid file\n");
     return s;
-}
-
-char ** const fill_sq(map_t const * m, sq_t *sq)
-{
-    for (uint_t y = sq->y; y < sq->y + sq->side; ++y)
-        for (uint_t x = sq->x; x < sq->x + sq->side; ++x)
-            m->m[y][x] = 'x';
-    free(sq);
-    return m->m;
 }
 
 map_t *set_map(char const *path)
