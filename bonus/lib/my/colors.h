@@ -9,7 +9,7 @@
 # define _COLORS_H_
 
 # define B_RED "\x1B[1;31m"
-# define B_GREEN "\x1B[1;32"
+# define B_GREEN "\x1B[1;32m"
 # define B_YELLOW "\x1B[1;33m"
 # define B_BLUE "\x1B[1;36m"
 
