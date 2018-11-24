@@ -108,6 +108,7 @@ static inline signed char err(char const *errstr)
     write(2, errstr, my_strlen(errstr));
     return 0;
 }
+
 static inline signed char errb(char const *errstr)
 {
     if (!errstr || !*errstr) {
@@ -117,7 +118,6 @@ static inline signed char errb(char const *errstr)
     write(2, errstr, my_strlen(errstr));
     exit(84);
 }
-
 
 static inline signed char errc(char *buf, char const *errstr)
 {

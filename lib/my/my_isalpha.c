@@ -14,7 +14,7 @@ int my_isalpha(char const ch)
 
 int my_isprintable(char const ch)
 {
-    return (ch >= 32 && ch <= 126);
+    return ((ch >= 32 && ch <= 126) || my_isspace(ch));
 }
 
 int my_isdigit(char const ch)
