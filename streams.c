@@ -8,7 +8,7 @@
 #include "bsq.h"
 #include "my.h"
 
-static int skip_line(int fd)
+int skip_line(int fd)
 {
     char buf = 0;
     uint_t r;
@@ -28,7 +28,7 @@ static int skip_line(int fd)
     return fd;
 }
 
-static char *check_board(char *s)
+char *check_board(char *s)
 {
     uint_t col = 0;
     uint_t i = 0;

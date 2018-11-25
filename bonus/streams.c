@@ -101,18 +101,3 @@ void print_map(char **map)
         free(map[i]);
     free(map);
 }
-    /* for (uint_t i = 0, j = 0; map[i]; i++, j = 0) { */
-    /*     while (map[i] && map[i][j]) { */
-    /*         if (map[i][j] == 'x') */
-    /*             my_putstr(B_GREEN); */
-    /*         if (map[i][j] == 'o') */
-    /*             my_putstr(B_RED); */
-    /*         if (map[i][j] == '.') */
-    /*             my_putstr(B_YELLOW); */
-    /*         my_putchar(map[i][j]); */
-    /*         my_putstr(RESET); */
-    /*         fflush(stdout); */
-    /*         i++; */
-    /*     } */
-    /*     my_putchar('\n'); */
-    /* } */

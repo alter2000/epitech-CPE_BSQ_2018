@@ -9,16 +9,18 @@
 #include "include/bsq.h"
 #include <unistd.h>
 
-static unsigned int count_cols(char const *s)
+unsigned int count_cols(char *s)
 {
     uint_t col = 0;
 
     while (s[col] != '\n')
         ++col;
+    if (col == 0)
+        errc(s, "invalid map\n");
     return col;
 }
 
-static unsigned int count_lines(char const *s)
+unsigned int count_lines(char *s)
 {
     uint_t line = 0;
 
@@ -26,11 +28,11 @@ static unsigned int count_lines(char const *s)
         if (*s++ == '\n')
             ++line;
     if (line == 0)
-        errb("invalid map");
+        errc(s, "invalid map\n");
     return line;
 }
 
-static map_t *mkmap(size_t const cols, size_t const lines)
+map_t *mkmap(size_t const cols, size_t const lines)
 {
     map_t *map = malloc(sizeof(map_t));
 

@@ -8,7 +8,7 @@
 #include "include/bsq.h"
 #include "include/my.h"
 
-static int issquare(map_t const *m, int row, int col, int side)
+int issquare(map_t const *m, int row, int col, int side)
 {
     if (row < 0 || col < 0 \
         || (row + side) > m->row || (col + side) > m->col)
@@ -20,7 +20,7 @@ static int issquare(map_t const *m, int row, int col, int side)
     return 1;
 }
 
-static sq_t *set_sq(sq_t *sq, int const y, int const x, int const side)
+sq_t *set_sq(sq_t *sq, int const y, int const x, int const side)
 {
     if (!sq)
         err("set_sq: no square struct\n");
@@ -32,7 +32,7 @@ static sq_t *set_sq(sq_t *sq, int const y, int const x, int const side)
     return sq;
 }
 
-static void check_sq(map_t const *m, sq_t *sq, int const y, int const x)
+void check_sq(map_t const *m, sq_t *sq, int const y, int const x)
 {
     int side = 0;
 
