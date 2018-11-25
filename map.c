@@ -34,6 +34,9 @@ static map_t *mkmap(size_t const cols, size_t const lines)
 {
     map_t *map = malloc(sizeof(map_t));
 
+    if (cols == 0 || lines == 0) {
+        errc((char *) map, "invalid map\n");
+    }
     map->m = (char **) my_nul(malloc(sizeof(char *) * (lines + 2)), \
                         sizeof(char *) * (lines + 2));
     map->col = cols;
