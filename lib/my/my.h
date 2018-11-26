@@ -76,18 +76,25 @@ long long int my_atoll(char const *);
 char *getl(int, char **, int *);
 char *getd(int, char **, int *, char);
 
-typedef struct btree
+struct btree
 {
     struct btree *left;
     struct btree *right;
+    struct btree *parent;
+    struct btree *next;
+    struct btree *root;
     char *data;
-} btree_t;
+};
+typedef struct btree btree_t;
 
 btree_t *btree_create_node(char *);
-void btree_apply_infix(btree_t *, long long int (*)(char *));
-void btree_apply_prefix(btree_t *, long long int (*)(char *));
 void btree_insert_data(btree_t *, char *, int (*)());
 size_t btree_level_count(btree_t const *);
+void btree_destroy(btree_t *);
+
+void btree_apply_infix(btree_t *, long long int (*)(char *));
+void btree_apply_prefix(btree_t *, long long int (*)(char *));
+void btree_apply_postfix(btree_t *root, long long int (*)(char *));
 
 static inline int min(int i, int j)
 {
